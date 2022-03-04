@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  countries.webapi:
+    build:
+      context: .
+      dockerfile: Countries.WebApi/Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+  db:
+    image: "mcr.microsoft.com/mssql/server"
+    environment:
+      SA_PASSWORD: "P@ssw0rd"
+      ACCEPT_EULA: "Y"
