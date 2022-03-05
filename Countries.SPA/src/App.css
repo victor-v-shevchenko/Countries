@@ -4,9 +4,13 @@
   margin: .5em
 }
 
-select, .App div {
-  width: 25%;
-  margin: .5em auto;
+.App div {
+  margin: .5em
+}
+
+.MuiPaper-root
+{
+  max-height: 640px !important;
 }
 
 .light {
