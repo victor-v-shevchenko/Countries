@@ -1,16 +1,27 @@
 version: '3.4'
 
 services:
+  countries.spa:
+    build:
+      context: .
+      dockerfile: Countries.SPA/Dockerfile
+    ports:
+      - "80:3000"
+    container_name: countries-spa
+
   countries.webapi:
     build:
       context: .
       dockerfile: Countries.WebApi/Dockerfile
     ports:
-      - "8000:80"
+      - "5000:5000"
     depends_on:
       - db
+    container_name: countries-webapi
+
   db:
     image: "mcr.microsoft.com/mssql/server"
     environment:
       SA_PASSWORD: "P@ssw0rd"
       ACCEPT_EULA: "Y"
+    container_name: countries-db

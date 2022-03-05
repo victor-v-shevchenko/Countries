@@ -55,6 +55,8 @@ namespace Countries.WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Countries v1"));
             }
 
+            app.UseCors(builder => builder.AllowAnyOrigin());
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
