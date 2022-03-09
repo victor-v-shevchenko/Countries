@@ -5,14 +5,16 @@ import { Selector } from './components/Selector';
 import ThemeSwitch, { ColorModeContext } from './components/ThemeSwitch';
 import { City, Country } from './dto/NamedItem';
 
+const api_uri = (window as any).env?.WEB_API_URI ?? "http://localhost:5000"
+
 function App() {
   const [countries, setCountries] = useState<Country[]>([])
   const [cities, setCities] = useState<City[]>([])
   const [selectedCountry, setSelectedCountry] = useState<string>("")
   const [selectedCity, setSelectedCity] = useState<string>("")
-  
+    
   useEffect(() => {
-       fetch("http://localhost:5000/countries", { mode: 'cors' })
+       fetch(`${api_uri}/countries`, { mode: 'cors' })
        .then(res => res.json()).then(result => {
           setCountries(result);
           setSelectedCountry(result.at(0)?.id)
@@ -27,7 +29,7 @@ function App() {
       setCities([])
       return;
     }
-    fetch(`http://localhost:5000/country/${selectedCountry}/cities`, { mode: 'cors' })
+    fetch(`${api_uri}/country/${selectedCountry}/cities`, { mode: 'cors' })
     .then(res => res.json()).then(result => {
        setSelectedCity('')
        setCities(result);
